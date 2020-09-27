@@ -5,44 +5,44 @@
 #include "utils\singleton.h"
 
 namespace ray {
-	namespace recorder {
+namespace recorder {
 
-		class Recorder :
-			public IRecorder,
-			public utils::Singleton<Recorder>
-		{
+class Recorder :
+	public IRecorder,
+	public utils::Singleton<Recorder>
+{
 
-		private:
-			Recorder() {}
-			~Recorder() { release(); }
+private:
+	Recorder() {}
+	~Recorder() { release(); }
 
-			Recorder(const Singleton&) = delete;
-			Recorder& operator=(const Recorder&) = delete;
+	Recorder(const Singleton&) = delete;
+	Recorder& operator=(const Recorder&) = delete;
 
-			SINGLETON_FRIEND(Recorder);
+	SINGLETON_FRIEND(Recorder);
 
-		public:
-			rt_error initialize(const char logPath[RECORDER_MAX_PATH_LEN]) override;
+public:
+	rt_error initialize(const char logPath[RECORDER_MAX_PATH_LEN]) override;
 
-			void release() override;
+	void release() override;
 
-			void getVersion(
-				uint32_t *major,
-				uint32_t *minor,
-				uint32_t *patch,
-				uint32_t *build) override;
+	void getVersion(
+		uint32_t *major,
+		uint32_t *minor,
+		uint32_t *patch,
+		uint32_t *build) override;
 
-			void setEventHandler(IRecorderEventHandler *handler) override;
+	void setEventHandler(IRecorderEventHandler *handler) override;
 
-			void queryInterface(const RECORDER_INTERFACE_IID& iid, void **pp) override;
+	void queryInterface(const RECORDER_INTERFACE_IID& iid, void **pp) override;
 
-		private:
+private:
 
-			void onRemuxProgress(const char *srcFilePath, int progress, int total);
-			void onRemuxState(const char *srcFilePath, bool succeed, rt_error error);
-		private:
+	void onRemuxProgress(const char *srcFilePath, int progress, int total);
+	void onRemuxState(const char *srcFilePath, bool succeed, rt_error error);
+private:
 
-			IRecorderEventHandler *_event_handler;
-		};
-	}
+	IRecorderEventHandler *_event_handler;
+};
+}
 }

@@ -39,150 +39,150 @@
 
 namespace ray {
 
-	typedef uint32_t	rt_error;
-	typedef uint64_t	rt_uid;
+typedef uint32_t	rt_error;
+typedef uint64_t	rt_uid;
 
-	typedef enum {
-		ERR_NONE = 0
-	}ERROR_CODE;
+typedef enum {
+	ERR_NONE = 0
+}ERROR_CODE;
 
-	typedef enum {
-		VIDEO_CAPTURER_UNKNOWN = 0,
+typedef enum {
+	VIDEO_CAPTURER_UNKNOWN = 0,
 
-		/**
-		* whole monitor video capturer
-		*/
-		VIDEO_CAPTURER_MONITOR,
+	/**
+	* whole monitor video capturer
+	*/
+	VIDEO_CAPTURER_MONITOR,
 
-		/**
-		* rect video capturer
-		*/
-		VIDEO_CAPTURER_RECT,
+	/**
+	* rect video capturer
+	*/
+	VIDEO_CAPTURER_RECT,
 
-		/**
-		* window video capturer
-		*/
-		VIDEO_CAPTURER_WINDOW,
+	/**
+	* window video capturer
+	*/
+	VIDEO_CAPTURER_WINDOW,
 
-		/**
-		* game video capturer, means dx or gl hook capture
-		*/
-		VIDEO_CAPTURER_GAME,
+	/**
+	* game video capturer, means dx or gl hook capture
+	*/
+	VIDEO_CAPTURER_GAME,
 
-		/**
-		* camera video capturer
-		*/
-		VIDEO_CAPTURER_CAMERA,
+	/**
+	* camera video capturer
+	*/
+	VIDEO_CAPTURER_CAMERA,
 
-		/**
-		* source video capturer, like text what you want to draw topmost or picture and video files
-		*/
-		VIDEO_CAPTURER_SOURCE,
-	}VIDEO_CAPTURER_TYPE;
+	/**
+	* source video capturer, like text what you want to draw topmost or picture and video files
+	*/
+	VIDEO_CAPTURER_SOURCE,
+}VIDEO_CAPTURER_TYPE;
 
-	typedef enum {
-		AUDIO_CAPTURER_UNKNOWN = 0,
+typedef enum {
+	AUDIO_CAPTURER_UNKNOWN = 0,
 
-		/**
-		* speaker audio capturer
-		*/
-		AUDIO_CAPTURER_SPEAKER,
+	/**
+	* speaker audio capturer
+	*/
+	AUDIO_CAPTURER_SPEAKER,
 
-		/**
-		* microphone audio capturer
-		*/
-		AUDIO_CAPTURER_MICROPHONE,
+	/**
+	* microphone audio capturer
+	*/
+	AUDIO_CAPTURER_MICROPHONE,
 
-		/**
-		* app audio capturer
-		*/
-		AUDIO_CAPTURER_APP
-	}AUDIO_CAPTURER_TYPE;
+	/**
+	* app audio capturer
+	*/
+	AUDIO_CAPTURER_APP
+}AUDIO_CAPTURER_TYPE;
 
-	typedef enum {
-		RECORDER_IID_UNKNOWN = 0,
+typedef enum {
+	RECORDER_IID_UNKNOWN = 0,
 
-		RECORDER_IID_VIDEO_DEVICE_MGR,
-		RECORDER_IID_VIDEO_CAPTURER_MGR,
-		RECORDER_IID_VIDEO_ENCODER_MGR,
+	RECORDER_IID_VIDEO_DEVICE_MGR,
+	RECORDER_IID_VIDEO_CAPTURER_MGR,
+	RECORDER_IID_VIDEO_ENCODER_MGR,
 
-		RECORDER_IID_AUDIO_DEVICE_MGR,
-		RECORDER_IID_AUDIO_CAPTURER_MGR,
-		RECORDER_IID_AUDIO_ENCODER_MGR,
+	RECORDER_IID_AUDIO_DEVICE_MGR,
+	RECORDER_IID_AUDIO_CAPTURER_MGR,
+	RECORDER_IID_AUDIO_ENCODER_MGR,
 
-		RECORDER_IID_MUXER,
-		RECORDER_IID_REMUXER
-	}RECORDER_INTERFACE_IID;
+	RECORDER_IID_MUXER,
+	RECORDER_IID_REMUXER
+}RECORDER_INTERFACE_IID;
 
 
-	namespace base {
+namespace base {
 
-		class CRect {
-		public:
-			CRect(){}
-			~CRect(){}
+class CRect {
+public:
+	CRect() {}
+	~CRect() {}
 
-			uint32_t width() { return right - left; }
-			uint32_t height() { return bottom - top; }
+	uint32_t width() { return right - left; }
+	uint32_t height() { return bottom - top; }
 
-			uint32_t left;
-			uint32_t top;
-			uint32_t right;
-			uint32_t bottom;
-		};
+	uint32_t left;
+	uint32_t top;
+	uint32_t right;
+	uint32_t bottom;
+};
 
-		template<class T>
-		class AutoPtr {
-			typedef T value_type;
-			typedef T* pointer_type;
-		public:
-			AutoPtr(pointer_type p = 0)
-				:ptr_(p)
-			{}
-			~AutoPtr() {
-				if (ptr_)
-					ptr_->release();
-			}
-			operator bool() const { return ptr_ != (pointer_type)0; }
-			value_type& operator*() const {
-				return *get();
-			}
+template<class T>
+class AutoPtr {
+	typedef T value_type;
+	typedef T* pointer_type;
+public:
+	AutoPtr(pointer_type p = 0)
+		:ptr_(p)
+	{}
+	~AutoPtr() {
+		if (ptr_)
+			ptr_->release();
+	}
+	operator bool() const { return ptr_ != (pointer_type)0; }
+	value_type& operator*() const {
+		return *get();
+	}
 
-			pointer_type operator->() const {
-				return get();
-			}
+	pointer_type operator->() const {
+		return get();
+	}
 
-			pointer_type get() const {
-				return ptr_;
-			}
+	pointer_type get() const {
+		return ptr_;
+	}
 
-			pointer_type release() {
-				pointer_type tmp = ptr_;
-				ptr_ = 0;
-				return tmp;
-			}
+	pointer_type release() {
+		pointer_type tmp = ptr_;
+		ptr_ = 0;
+		return tmp;
+	}
 
-			void reset(pointer_type ptr = 0) {
-				if (ptr != ptr_ && ptr_)
-					ptr_->release();
-				ptr_ = ptr;
-			}
-			template<class C1, class C2>
-			bool queryInterface(C1* c, C2 iid) {
-				pointer_type p = NULL;
-				if (c && !c->queryInterface(iid, (void**)&p))
-				{
-					reset(p);
-				}
-				return p != NULL;
-			}
-		private:
-			AutoPtr(const AutoPtr&);
-			AutoPtr& operator=(const AutoPtr&);
-		private:
-			pointer_type ptr_;
-		};
-	} // namespace base
+	void reset(pointer_type ptr = 0) {
+		if (ptr != ptr_ && ptr_)
+			ptr_->release();
+		ptr_ = ptr;
+	}
+	template<class C1, class C2>
+	bool queryInterface(C1* c, C2 iid) {
+		pointer_type p = NULL;
+		if (c && !c->queryInterface(iid, (void**)&p))
+		{
+			reset(p);
+		}
+		return p != NULL;
+	}
+private:
+	AutoPtr(const AutoPtr&);
+	AutoPtr& operator=(const AutoPtr&);
+private:
+	pointer_type ptr_;
+};
+} // namespace base
 
 
 } // namespace ray
