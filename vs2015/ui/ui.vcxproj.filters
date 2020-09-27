@@ -9,12 +9,24 @@
     <ClCompile Include="..\..\src\ui\view\main_view_ui.cpp">
       <Filter>view</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\ui\view\setting_view.cpp">
+      <Filter>view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ui\view\setting_view_ui.cpp">
+      <Filter>view</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\ui\stdafx.h" />
     <ClInclude Include="..\..\src\ui\app.h" />
     <ClInclude Include="..\..\src\ui\view\main_view.h">
       <Filter>view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ui\view\setting_view.h">
+      <Filter>view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ui\resource.h">
+      <Filter>resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -30,10 +42,34 @@
     <Filter Include="resources\main">
       <UniqueIdentifier>{c852e04b-5678-4e4b-aec0-cabb5e7313ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="resources\lang">
+      <UniqueIdentifier>{eaa7688e-a227-45ff-8a11-59b31c2e3fd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\src\ui\resources\themes\default\main\main.xml">
       <Filter>resources\main</Filter>
     </Xml>
+    <Xml Include="..\..\src\ui\resources\themes\default\global.xml">
+      <Filter>resources</Filter>
+    </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\ui\resources\lang\en_US\gdstrings.ini">
+      <Filter>resources\lang</Filter>
+    </None>
+    <None Include="..\..\src\ui\resources\lang\zh_CN\gdstrings.ini">
+      <Filter>resources\lang</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ui.rc">
+      <Filter>resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="logo.ico">
+      <Filter>resources</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -307,14 +307,29 @@
     <ClCompile Include="..\..\src\ui\main.cpp" />
     <ClCompile Include="..\..\src\ui\view\main_view.cpp" />
     <ClCompile Include="..\..\src\ui\view\main_view_ui.cpp" />
+    <ClCompile Include="..\..\src\ui\view\setting_view.cpp" />
+    <ClCompile Include="..\..\src\ui\view\setting_view_ui.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\ui\app.h" />
+    <ClInclude Include="..\..\src\ui\resource.h" />
     <ClInclude Include="..\..\src\ui\stdafx.h" />
     <ClInclude Include="..\..\src\ui\view\main_view.h" />
+    <ClInclude Include="..\..\src\ui\view\setting_view.h" />
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="..\..\src\ui\resources\themes\default\global.xml" />
     <Xml Include="..\..\src\ui\resources\themes\default\main\main.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\ui\resources\lang\en_US\gdstrings.ini" />
+    <None Include="..\..\src\ui\resources\lang\zh_CN\gdstrings.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ui.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

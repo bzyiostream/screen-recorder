@@ -20,17 +20,13 @@ void AppThread::Init()
 
 #ifdef _DEBUG
 	ui::GlobalManager::Startup(theme_dir + L"..\\..\\..\\src\\ui\\resources\\", ui::CreateControlCallback(), false,
-		L"themes\\default", L"lang\\zh_CN");
+		L"themes\\default", L"lang\\en_US");
 #else
 	ui::GlobalManager::Startup(theme_dir + L"resources\\", ui::CreateControlCallback(), false,
 		L"themes\\default", L"lang\\zh_CN");
 #endif
 
-	view::MainView *main_view = new view::MainView();
-	main_view->Create(NULL, view::MainView::kClassName.c_str(), WS_OVERLAPPEDWINDOW & WS_MINIMIZEBOX, 0);
-
-	main_view->CenterWindow();
-	main_view->ShowWindow();
+	view::MainView::ShowMainView();
 }
 
 void AppThread::Cleanup()
