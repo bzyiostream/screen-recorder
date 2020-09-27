@@ -19,7 +19,7 @@ void AppThread::Init()
 	std::wstring theme_dir = nbase::win32::GetCurrentModuleDirectory();
 
 #ifdef _DEBUG
-	ui::GlobalManager::Startup(theme_dir + L"..\\..\\..\\src\\ui\\resources\\", ui::CreateControlCallback(), false,
+	ui::GlobalManager::Startup(theme_dir + L"..\\..\\..\\vs2015\\ui\\resources\\", ui::CreateControlCallback(), false,
 		L"themes\\default", L"lang\\en_US");
 #else
 	ui::GlobalManager::Startup(theme_dir + L"resources\\", ui::CreateControlCallback(), false,

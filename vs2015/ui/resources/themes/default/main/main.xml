@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Window size="800,600" mininfo="400,300" caption="0,0,0,35" sizebox="4,4,6,6" textid="STRID_MIANWINDOW_TITLE">
+<Window size="800,600" mininfo="800,600" caption="0,0,0,35" sizebox="4,4,6,6" textid="STRID_MIANWINDOW_TITLE">
   <VBox bkcolor="bk_wnd_lightcolor">
     
     <HBox width="stretch" height="35" bkcolor="bk_wnd_lightcolor">

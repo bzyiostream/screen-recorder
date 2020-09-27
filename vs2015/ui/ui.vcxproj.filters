@@ -1,33 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\src\ui\main.cpp" />
-    <ClCompile Include="..\..\src\ui\app.cpp" />
-    <ClCompile Include="..\..\src\ui\view\main_view.cpp">
+    <ClCompile Include="view\main_view.cpp">
       <Filter>view</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ui\view\main_view_ui.cpp">
+    <ClCompile Include="view\main_view_ui.cpp">
       <Filter>view</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ui\view\setting_view.cpp">
+    <ClCompile Include="view\setting_view.cpp">
       <Filter>view</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ui\view\setting_view_ui.cpp">
+    <ClCompile Include="view\setting_view_ui.cpp">
       <Filter>view</Filter>
     </ClCompile>
+    <ClCompile Include="app.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\ui\stdafx.h" />
-    <ClInclude Include="..\..\src\ui\app.h" />
-    <ClInclude Include="..\..\src\ui\view\main_view.h">
+    <ClInclude Include="view\main_view.h">
       <Filter>view</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\ui\view\setting_view.h">
+    <ClInclude Include="view\setting_view.h">
       <Filter>view</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\ui\resource.h">
-      <Filter>resources</Filter>
-    </ClInclude>
+    <ClInclude Include="app.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="view">
@@ -45,22 +43,20 @@
     <Filter Include="resources\lang">
       <UniqueIdentifier>{eaa7688e-a227-45ff-8a11-59b31c2e3fd6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="resources\setting">
+      <UniqueIdentifier>{cc872ebb-b3a8-475e-be7c-a1d4d0e74178}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\..\src\ui\resources\themes\default\main\main.xml">
+    <Xml Include="resources\themes\default\main\main.xml">
       <Filter>resources\main</Filter>
     </Xml>
-    <Xml Include="..\..\src\ui\resources\themes\default\global.xml">
+    <Xml Include="resources\themes\default\global.xml">
       <Filter>resources</Filter>
     </Xml>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\src\ui\resources\lang\en_US\gdstrings.ini">
-      <Filter>resources\lang</Filter>
-    </None>
-    <None Include="..\..\src\ui\resources\lang\zh_CN\gdstrings.ini">
-      <Filter>resources\lang</Filter>
-    </None>
+    <Xml Include="resources\themes\default\setting\setting.xml">
+      <Filter>resources\setting</Filter>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ui.rc">
@@ -71,5 +67,13 @@
     <Image Include="logo.ico">
       <Filter>resources</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\lang\en_US\gdstrings.ini">
+      <Filter>resources\lang</Filter>
+    </None>
+    <None Include="resources\lang\zh_CN\gdstrings.ini">
+      <Filter>resources\lang</Filter>
+    </None>
   </ItemGroup>
 </Project>

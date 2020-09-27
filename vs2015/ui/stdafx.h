@@ -9,6 +9,9 @@
 #include <tchar.h>
 
 
+#include "resource.h"
+
+
 // base header
 #include "base\base.h"
 

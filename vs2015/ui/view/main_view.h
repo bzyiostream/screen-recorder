@@ -20,13 +20,13 @@ public:
 
 	virtual LRESULT OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 
-public:
-	static void ShowMainView();
-
 private:
 	bool Notify(ui::EventArgs* msg);
 
 	bool OnClicked(ui::EventArgs* msg);
+
+public:
+	static void ShowMainView();
 
 private:
 	static const std::wstring kClassName;
