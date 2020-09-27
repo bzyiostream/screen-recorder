@@ -3,9 +3,37 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\ui\main.cpp" />
     <ClCompile Include="..\..\src\ui\app.cpp" />
+    <ClCompile Include="..\..\src\ui\view\main_view.cpp">
+      <Filter>view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ui\view\main_view_ui.cpp">
+      <Filter>view</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\ui\stdafx.h" />
     <ClInclude Include="..\..\src\ui\app.h" />
+    <ClInclude Include="..\..\src\ui\view\main_view.h">
+      <Filter>view</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="view">
+      <UniqueIdentifier>{1ca893f8-bed8-4ab4-9d56-ad2d7c5e4a1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{7f368069-c55e-4368-8a64-30a31a770d6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{5762333a-446e-4e3c-aade-422dc131a30c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources\main">
+      <UniqueIdentifier>{c852e04b-5678-4e4b-aec0-cabb5e7313ec}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\..\src\ui\resources\themes\default\main\main.xml">
+      <Filter>resources\main</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

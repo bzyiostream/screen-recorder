@@ -18,3 +18,9 @@
 
 // ui components
 #include "ui_components\ui_components.h"
+
+enum ThreadId {
+	kThreadApp,
+	kThreadUI,
+	kThreadGlobalMisc
+};
