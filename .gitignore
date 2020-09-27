@@ -18,4 +18,7 @@
 /2node/platform/win32/screen-recorder.dll
 /2node/platform/win32/screen-recorder.lib
 /Bin
-
+/vs2015/ipch
+/vs2015/ui/Debug
+/vs2015/ui/Release
+/libs
