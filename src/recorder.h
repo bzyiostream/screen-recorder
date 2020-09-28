@@ -1,15 +1,14 @@
-
 #define RAY_EXPORT
-#include "export.h"
+#include "include\export.h"
 
-#include "utils\singleton.h"
+#include "base\singleton.h"
 
 namespace ray {
 namespace recorder {
 
 class Recorder :
 	public IRecorder,
-	public utils::Singleton<Recorder>
+	public base::Singleton<Recorder>
 {
 
 private:

@@ -1,13 +1,13 @@
-#ifndef REMUXER_FFMPEG
-#define REMUXER_FFMPEG
+#ifndef RAY_REMUXER_H
+#define RAY_REMUXER_H
 
 #include <map>
 #include <atomic>
 #include <functional>
 #include <thread>
 
-#include "export.h"
-#include "utils\singleton.h"
+#include "include\export.h"
+#include "base\singleton.h"
 
 namespace ray {
 namespace remux {
@@ -17,7 +17,7 @@ typedef std::function<void(const char *srcFilePath, bool succeed, rt_error error
 
 class Remuxer :
 	public recorder::IRemuxer,
-	public utils::Singleton<Remuxer>
+	public base::Singleton<Remuxer>
 {
 private:
 	Remuxer() {}

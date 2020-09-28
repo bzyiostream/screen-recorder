@@ -2,18 +2,18 @@
 
 #include "export.h"
 
-#include "old\device_audios.h"
-#include "old\encoder_video_define.h"
+#include "device_audios.h"
+#include "encoder_video_define.h"
 
-#include "old\record_audio_factory.h"
-#include "old\record_desktop_factory.h"
+#include "record_audio_factory.h"
+#include "record_desktop_factory.h"
 
-#include "old\muxer_define.h"
-#include "old\muxer_ffmpeg.h"
+#include "muxer_define.h"
+#include "muxer_ffmpeg.h"
 
-#include "old\remuxer_ffmpeg.h"
+#include "remuxer_ffmpeg.h"
 
-#include "old\error_define.h"
+#include "error_define.h"
 #include "utils\strings.h"
 #include "utils\log.h"
 

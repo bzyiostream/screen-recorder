@@ -29,8 +29,8 @@
 #define RAY_CALL
 #endif
 
-#include "autoptr.h"
-#include "refptr.h"
+#include "ray_autoptr.h"
+#include "ray_refptr.h"
 
 #define DEVICE_MAX_NAME_LEN 260
 #define DEVICE_MAX_ID_LEN 260
@@ -125,7 +125,6 @@ typedef enum {
 	RECORDER_IID_REMUXER
 }RECORDER_INTERFACE_IID;
 
-
 namespace base {
 
 class CRect {
@@ -156,8 +155,6 @@ public:
 };
 
 } // namespace base
-
-
 } // namespace ray
 
 #endif

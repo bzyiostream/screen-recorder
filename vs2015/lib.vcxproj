@@ -96,7 +96,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\ffmpeg\include\;$(OutDir);$(SolutionDir)..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\ffmpeg\include\;$(OutDir);$(SolutionDir)..\src\;$(SolutionDir)..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -114,7 +114,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\ffmpeg\include\;$(OutDir);$(SolutionDir)..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\ffmpeg\include\;$(OutDir);$(SolutionDir)..\src\;$(SolutionDir)..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,7 +134,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\ffmpeg\include\;$(OutDir);$(SolutionDir)..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\ffmpeg\include\;$(OutDir);$(SolutionDir)..\src\;$(SolutionDir)..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -157,7 +157,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\ffmpeg\include\;$(OutDir);$(SolutionDir)..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\ffmpeg\include\;$(OutDir);$(SolutionDir)..\src\;$(SolutionDir)..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -177,8 +177,12 @@ copy /Y $(TargetDir)$(TargetName).lib $(SolutionDir)..\2node\platform\win32\
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\autoptr.h" />
-    <ClInclude Include="..\src\base.h" />
+    <ClInclude Include="..\include\ray_autoptr.h" />
+    <ClInclude Include="..\include\ray_base.h" />
+    <ClInclude Include="..\include\export.h" />
+    <ClInclude Include="..\include\ray_refptr.h" />
+    <ClInclude Include="..\src\base\refptr_object.h" />
+    <ClInclude Include="..\src\base\singleton.h" />
     <ClInclude Include="..\src\constants\macros.h" />
     <ClInclude Include="..\src\constants\version.h" />
     <ClInclude Include="..\src\old\common.h" />
@@ -192,6 +196,7 @@ copy /Y $(TargetDir)$(TargetName).lib $(SolutionDir)..\2node\platform\win32\
     <ClInclude Include="..\src\old\encoder_video_nvenc.h" />
     <ClInclude Include="..\src\old\encoder_video_x264.h" />
     <ClInclude Include="..\src\old\error_define.h" />
+    <ClInclude Include="..\src\old\export.h" />
     <ClInclude Include="..\src\old\filter.h" />
     <ClInclude Include="..\src\old\filter_amix.h" />
     <ClInclude Include="..\src\old\filter_aresample.h" />
@@ -222,17 +227,14 @@ copy /Y $(TargetDir)$(TargetName).lib $(SolutionDir)..\2node\platform\win32\
     <ClInclude Include="..\src\old\system_time.h" />
     <ClInclude Include="..\src\old\system_version.h" />
     <ClInclude Include="..\src\recorder.h" />
-    <ClInclude Include="..\src\export.h" />
-    <ClInclude Include="..\src\refptr.h" />
     <ClInclude Include="..\src\remuxer\remuxer.h" />
     <ClInclude Include="..\src\utils\log.h" />
-    <ClInclude Include="..\src\utils\refptr_object.h" />
-    <ClInclude Include="..\src\utils\singleton.h" />
     <ClInclude Include="..\src\utils\strings.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\dllmain.cpp" />
-    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\recorder.cpp" />
+    <ClCompile Include="..\src\unit_test.cpp" />
     <ClCompile Include="..\src\old\d3d_helper.cpp" />
     <ClCompile Include="..\src\old\device_audios.cpp" />
     <ClCompile Include="..\src\old\device_videos.cpp" />
@@ -241,6 +243,7 @@ copy /Y $(TargetDir)$(TargetName).lib $(SolutionDir)..\2node\platform\win32\
     <ClCompile Include="..\src\old\encoder_video_factory.cpp" />
     <ClCompile Include="..\src\old\encoder_video_nvenc.cpp" />
     <ClCompile Include="..\src\old\encoder_video_x264.cpp" />
+    <ClCompile Include="..\src\old\export.cpp" />
     <ClCompile Include="..\src\old\filter.cpp" />
     <ClCompile Include="..\src\old\filter_amix.cpp" />
     <ClCompile Include="..\src\old\filter_aresample.cpp" />
@@ -264,8 +267,6 @@ copy /Y $(TargetDir)$(TargetName).lib $(SolutionDir)..\2node\platform\win32\
     <ClCompile Include="..\src\old\system_lib.cpp" />
     <ClCompile Include="..\src\old\system_time.cpp" />
     <ClCompile Include="..\src\old\system_version.cpp" />
-    <ClCompile Include="..\src\recorder.cpp" />
-    <ClCompile Include="..\src\export.cpp" />
     <ClCompile Include="..\src\remuxer\remuxer.cpp" />
     <ClCompile Include="..\src\utils\log.cpp" />
     <ClCompile Include="..\src\utils\strings.cpp" />

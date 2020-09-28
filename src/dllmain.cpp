@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <tchar.h>
 
+
 static void dump_file(const TCHAR *path, EXCEPTION_POINTERS *exception)
 {
 	HANDLE file = CreateFile(path, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);

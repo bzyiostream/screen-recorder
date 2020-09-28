@@ -10,6 +10,8 @@
 namespace ray {
 namespace recorder {
 
+using namespace base;
+
 rt_error Recorder::initialize(const RecorderConfiguration& config) {
 
 	utils::InitLogImpl(config.logPath ? utils::strings::utf8_unicode(config.logPath).c_str() : nullptr);
@@ -81,6 +83,8 @@ void Recorder::onRemuxState(const char * srcFilePath, bool succeed, rt_error err
 
 }
 }
+
+
 
 RAY_API ray::recorder::IRecorder *createRecorder()
 {

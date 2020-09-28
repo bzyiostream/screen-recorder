@@ -1,11 +1,11 @@
-#ifndef RAY_HELPER_SINGLETON_H
-#define RAY_HELPER_SINGLETON_H
+#ifndef RAY_BASE_SINGLETON_H
+#define RAY_BASE_SINGLETON_H
 
 #include <memory>
 #include <mutex>
 
 namespace ray {
-	namespace utils {
+	namespace base {
 
 		template<typename T>
 		class Singleton
@@ -46,7 +46,7 @@ namespace ray {
   // coz Singleton and auto_ptr need to call 
   // construct and deconstruct of Recorder
 #define SINGLETON_FRIEND(TypeName) \
-  friend ray::utils::Singleton<TypeName>; \
+  friend ray::base::Singleton<TypeName>; \
   friend class std::auto_ptr<TypeName>
 
 #endif // RAY_HELPER_SINGLETON_H
