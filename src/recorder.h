@@ -13,7 +13,7 @@ class Recorder :
 {
 
 private:
-	Recorder() {}
+	Recorder() :_event_handler(nullptr) {}
 	~Recorder() { release(); }
 
 	Recorder(const Singleton&) = delete;
@@ -22,7 +22,7 @@ private:
 	SINGLETON_FRIEND(Recorder);
 
 public:
-	rt_error initialize(const char logPath[RECORDER_MAX_PATH_LEN]) override;
+	rt_error initialize(const RecorderConfiguration& config) override;
 
 	void release() override;
 
@@ -34,12 +34,12 @@ public:
 
 	void setEventHandler(IRecorderEventHandler *handler) override;
 
-	void queryInterface(const RECORDER_INTERFACE_IID& iid, void **pp) override;
+	rt_error queryInterface(const RECORDER_INTERFACE_IID& iid, void **pp) override;
 
 private:
-
 	void onRemuxProgress(const char *srcFilePath, int progress, int total);
 	void onRemuxState(const char *srcFilePath, bool succeed, rt_error error);
+
 private:
 
 	IRecorderEventHandler *_event_handler;

@@ -29,6 +29,9 @@
 #define RAY_CALL
 #endif
 
+#include "autoptr.h"
+#include "refptr.h"
+
 #define DEVICE_MAX_NAME_LEN 260
 #define DEVICE_MAX_ID_LEN 260
 
@@ -43,8 +46,16 @@ typedef uint32_t	rt_error;
 typedef uint64_t	rt_uid;
 
 typedef enum {
-	ERR_NONE = 0
+	ERR_NONE = 0,
+	ERR_UNKNOWN,
+	ERR_UNSUPPORT,
+	ERR_INVALID_PARAM,
+	ERR_INVALID_POINTER,
 }ERROR_CODE;
+
+typedef enum {
+	REASON_NONE = 0
+}ERROR_REASON;
 
 typedef enum {
 	VIDEO_CAPTURER_UNKNOWN = 0,
@@ -131,57 +142,19 @@ public:
 	uint32_t bottom;
 };
 
-template<class T>
-class AutoPtr {
-	typedef T value_type;
-	typedef T* pointer_type;
+
+class RayRefInterface {
+protected:
+	virtual ~RayRefInterface() = default;
+
 public:
-	AutoPtr(pointer_type p = 0)
-		:ptr_(p)
-	{}
-	~AutoPtr() {
-		if (ptr_)
-			ptr_->release();
-	}
-	operator bool() const { return ptr_ != (pointer_type)0; }
-	value_type& operator*() const {
-		return *get();
-	}
+	virtual void AddRef() const = 0;
 
-	pointer_type operator->() const {
-		return get();
-	}
+	virtual void Release() const = 0;
 
-	pointer_type get() const {
-		return ptr_;
-	}
-
-	pointer_type release() {
-		pointer_type tmp = ptr_;
-		ptr_ = 0;
-		return tmp;
-	}
-
-	void reset(pointer_type ptr = 0) {
-		if (ptr != ptr_ && ptr_)
-			ptr_->release();
-		ptr_ = ptr;
-	}
-	template<class C1, class C2>
-	bool queryInterface(C1* c, C2 iid) {
-		pointer_type p = NULL;
-		if (c && !c->queryInterface(iid, (void**)&p))
-		{
-			reset(p);
-		}
-		return p != NULL;
-	}
-private:
-	AutoPtr(const AutoPtr&);
-	AutoPtr& operator=(const AutoPtr&);
-private:
-	pointer_type ptr_;
+	virtual bool HasOneRef() const = 0;
 };
+
 } // namespace base
 
 

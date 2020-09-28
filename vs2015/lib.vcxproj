@@ -177,6 +177,7 @@ copy /Y $(TargetDir)$(TargetName).lib $(SolutionDir)..\2node\platform\win32\
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\autoptr.h" />
     <ClInclude Include="..\src\base.h" />
     <ClInclude Include="..\src\constants\macros.h" />
     <ClInclude Include="..\src\constants\version.h" />
@@ -222,8 +223,10 @@ copy /Y $(TargetDir)$(TargetName).lib $(SolutionDir)..\2node\platform\win32\
     <ClInclude Include="..\src\old\system_version.h" />
     <ClInclude Include="..\src\recorder.h" />
     <ClInclude Include="..\src\export.h" />
+    <ClInclude Include="..\src\refptr.h" />
     <ClInclude Include="..\src\remuxer\remuxer.h" />
     <ClInclude Include="..\src\utils\log.h" />
+    <ClInclude Include="..\src\utils\refptr_object.h" />
     <ClInclude Include="..\src\utils\singleton.h" />
     <ClInclude Include="..\src\utils\strings.h" />
   </ItemGroup>

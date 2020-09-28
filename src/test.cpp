@@ -113,17 +113,22 @@ int main()
 #else
 
 int main() {
-	auto recorder = createRecorder();
+	using namespace ray;
+	using namespace recorder;
+
+	ray_autoptr<IRecorder> recorder = createRecorder();
+
+	RecorderConfiguration configuration;
+	recorder->initialize(configuration);
+
 
 	uint32_t major, minor, patch, build;
 
 	recorder->getVersion(&major, &minor, &patch, &build);
 
-	ray::recorder::IRemuxer *remuxer = nullptr;
-
-	recorder->queryInterface(ray::RECORDER_IID_REMUXER, (void**)&remuxer);
-
-	if (remuxer)
+	ray_autoptr<IRemuxer> remuxer = nullptr;
+	
+	if (remuxer.queryInterface<IRecorder, RECORDER_INTERFACE_IID>(recorder.get(), ray::RECORDER_IID_REMUXER))
 		remuxer->remux("..\\..\\save.mp4", "..\\..\\save.mkv");
 
 	getchar();

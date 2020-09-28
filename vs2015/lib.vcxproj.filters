@@ -22,9 +22,6 @@
     <Filter Include="muxer">
       <UniqueIdentifier>{c728c158-0d9c-4769-bd5e-52b2744f7521}</UniqueIdentifier>
     </Filter>
-    <Filter Include="record">
-      <UniqueIdentifier>{06d19726-b0cf-49cb-9562-ecb1d4525c50}</UniqueIdentifier>
-    </Filter>
     <Filter Include="old">
       <UniqueIdentifier>{9464c76d-5411-45c7-9d64-63f90f83fa41}</UniqueIdentifier>
     </Filter>
@@ -43,10 +40,12 @@
     <Filter Include="remuxer">
       <UniqueIdentifier>{81bf06b2-e1ed-4682-84b1-df14746edd22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="capture">
+      <UniqueIdentifier>{06d19726-b0cf-49cb-9562-ecb1d4525c50}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\export.h" />
-    <ClInclude Include="..\src\base.h" />
     <ClInclude Include="..\src\recorder.h" />
     <ClInclude Include="..\src\constants\version.h">
       <Filter>constants</Filter>
@@ -185,6 +184,12 @@
     </ClInclude>
     <ClInclude Include="..\src\remuxer\remuxer.h">
       <Filter>remuxer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\refptr.h" />
+    <ClInclude Include="..\src\autoptr.h" />
+    <ClInclude Include="..\src\base.h" />
+    <ClInclude Include="..\src\utils\refptr_object.h">
+      <Filter>utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

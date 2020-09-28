@@ -10,9 +10,9 @@
 namespace ray {
 namespace recorder {
 
-rt_error Recorder::initialize(const char logPath[RECORDER_MAX_PATH_LEN]) {
+rt_error Recorder::initialize(const RecorderConfiguration& config) {
 
-	utils::InitLogImpl(utils::strings::utf8_unicode(logPath).c_str());
+	utils::InitLogImpl(config.logPath ? utils::strings::utf8_unicode(config.logPath).c_str() : nullptr);
 
 	remux::Remuxer::getInstance()->setEventHandler(
 		std::bind(&Recorder::onRemuxProgress, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3),
@@ -41,19 +41,30 @@ void Recorder::setEventHandler(IRecorderEventHandler *handler) {
 	_event_handler = handler;
 }
 
-void Recorder::queryInterface(const RECORDER_INTERFACE_IID& iid, void **pp) {
-	if (!pp) return;
+rt_error Recorder::queryInterface(const RECORDER_INTERFACE_IID& iid, void **pp) {
+	rt_error ret = ERR_NONE;
 
-	*pp = nullptr;
+	do {
+		if (!pp) {
+			ret = ERR_INVALID_POINTER;
+			break;
+		}
 
-	switch (iid)
-	{
-	case RECORDER_IID_REMUXER:
-		*pp = static_cast<void*>(remux::Remuxer::getInstance());
-		break;
-	default:
-		break;
-	}
+		*pp = nullptr;
+
+		switch (iid)
+		{
+		case RECORDER_IID_REMUXER:
+			*pp = static_cast<void*>(remux::Remuxer::getInstance());
+			break;
+		default:
+			ret = ERR_UNSUPPORT;
+			break;
+		}
+
+	} while (0);
+
+	return ret;
 }
 
 void Recorder::onRemuxProgress(const char * srcFilePath, int progress, int total)

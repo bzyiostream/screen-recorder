@@ -316,6 +316,10 @@ typedef struct {
 
 }AudioEncoderParameter;
 
+typedef struct RecorderConfiguration {
+	const char *logPath = nullptr;
+}RecorderConfiguration;
+
 /**
 *
 */
@@ -452,44 +456,103 @@ public:
 	virtual rt_error setAudioEncoderParameters(AudioEncoderParameter *param) = 0;
 };
 
+/**
+* Remuxer
+*/
 class IRemuxer {
 protected:
 	virtual ~IRemuxer() {};
 public:
+
+	/**
+	* Start to remux file to specified format
+	* @param srcFilePath source file path
+	* @param dstFilePath dst file path specified format by extension
+	* @return 0 for succeed, others for error code
+	*/
 	virtual rt_error remux(
 		const char srcFilePath[RECORDER_MAX_PATH_LEN],
 		const char dstFilePath[RECORDER_MAX_PATH_LEN]
 	) = 0;
 
+	/**
+	* Stop to remux specified file 
+	* @param srcFilePath 
+	*/
+
 	virtual void stop(const char srcFilePath[RECORDER_MAX_PATH_LEN]) = 0;
 
+	/**
+	* Stop all remuxing thread
+	*/
 	virtual void stopAll() = 0;
+
+	/**
+	* Release remuxer
+	* This will stop all remuxing tasks and release remuxer
+	*/
+	virtual void release() = 0;
 };
 
 /**
-*
+* Recorder event handler
 */
 class IRecorderEventHandler {
 public:
 	virtual ~IRecorderEventHandler() {};
 
 	/**
-	*
+	* Muxe duration callback function
+	* @param duration
 	*/
 	virtual void onDuration(uint64_t duration) {}
 
-	virtual void onError(ERROR_CODE code) {}
+	/*
+	* Error code callback function
+	* @param code error code
+	* @param reason error reason
+	*/
+	virtual void onError(ERROR_CODE code, ERROR_REASON reason) {}
 
+	/**
+	* Device change callback function
+	* @param isAudio audio or video device
+	*/
 	virtual void onDeviceChanged(bool isAudio) {}
 
+	/**
+	* Raw video data callback function
+	* @param frame video frame
+	*/
 	virtual void onRawVideoData(IVideoFrame &frame) {}
 
+	/**
+	* Raw audio data callback function
+	* @param frame audio frame
+	*/
 	virtual void onRawAudioData(IAudioFrame &frame) {}
 
+	/**
+	* Audio volume callback function
+	* @param uid    specified audio capture
+	* @param volume 
+	*/
 	virtual void onAudioVolume(const rt_uid uid, int volume) {}
 
+	/**
+	* Remux progress callback function
+	* @param src source file path
+	* @param progress current progress (0-100)
+	* @param total total progress value ,will be always 100
+	*/
 	virtual void onRemuxProgress(const char *src, uint8_t progress, uint8_t total) {}
 
+	/**
+	* Remux state
+	* @param src     source file path
+	* @param succeed true or false
+	* @param error   error code
+	*/
 	virtual void onRemuxState(const char *src, bool succeed, rt_error error) {}
 };
 
@@ -507,7 +570,7 @@ public:
 	* @param logPath   Specified log file path in utf8
 	* @return          0 for success, other for error code
 	*/
-	virtual rt_error initialize(const char logPath[RECORDER_MAX_PATH_LEN]) = 0;
+	virtual rt_error initialize(const RecorderConfiguration& config) = 0;
 
 	/**
 	* Release recorder
@@ -532,11 +595,12 @@ public:
 
 	/**
 	* Query interface by iid
-	* @param[in] iid              Interface IID
-	* @param[out] interface   A pointer pointed to interface's pointer,
-							  nullptr will be set when get error, otherwise none-nullptr value will be set
+	* @param iid         Interface IID
+	* @param interface   A pointer pointed to interface's pointer,
+	*					 nullptr will be set when get error, otherwise none-nullptr value will be set
+	* @return            0 for success, other for error code
 	*/
-	virtual void queryInterface(const RECORDER_INTERFACE_IID& iid, void **interface) = 0;
+	virtual rt_error queryInterface(const RECORDER_INTERFACE_IID& iid, void **interface) = 0;
 };
 }
 }

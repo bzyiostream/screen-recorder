@@ -127,7 +127,8 @@ namespace ray {
 				if (log_file)
 					return true;
 
-				if (!log_file_name) {
+				if (!log_file_name || !log_file_name->length()) {
+					if (log_file_name) delete log_file_name;
 					// Nobody has called InitLogging to specify a debug log file, so here we
 					// initialize the log file name to a default.
 					log_file_name = new std::wstring(GetDefaultLogFile());
@@ -171,7 +172,8 @@ namespace ray {
 			if (!log_file_name)
 				log_file_name = new std::wstring();
 
-			*log_file_name = new_log_file;
+			if(new_log_file)
+				*log_file_name = new_log_file;
 
 			// DeleteFilePath(*log_file_name);
 
