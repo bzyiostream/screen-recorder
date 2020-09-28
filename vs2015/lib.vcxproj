@@ -179,7 +179,6 @@ copy /Y $(TargetDir)$(TargetName).lib $(SolutionDir)..\2node\platform\win32\
   <ItemGroup>
     <ClInclude Include="..\include\ray_autoptr.h" />
     <ClInclude Include="..\include\ray_base.h" />
-    <ClInclude Include="..\include\export.h" />
     <ClInclude Include="..\include\ray_refptr.h" />
     <ClInclude Include="..\src\base\refptr_object.h" />
     <ClInclude Include="..\src\base\singleton.h" />

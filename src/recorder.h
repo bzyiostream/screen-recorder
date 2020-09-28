@@ -1,5 +1,5 @@
 #define RAY_EXPORT
-#include "include\export.h"
+#include "include\ray_base.h"
 
 #include "base\singleton.h"
 
