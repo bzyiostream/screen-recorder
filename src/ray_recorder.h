@@ -24,19 +24,9 @@ public:
 
 	void release() override;
 
-	void getVersion(
-		uint32_t *major,
-		uint32_t *minor,
-		uint32_t *patch,
-		uint32_t *build) override;
-
 	void setEventHandler(IRecorderEventHandler *handler) override;
 
 	rt_error queryInterface(const RECORDER_INTERFACE_IID& iid, void **pp) override;
-
-private:
-	void onRemuxProgress(const char *srcFilePath, int progress, int total);
-	void onRemuxState(const char *srcFilePath, bool succeed, rt_error error);
 
 private:
 

@@ -1,6 +1,5 @@
 
 #define AMRECORDER_IMPORT
-#include "../src/export.h"
 
 #include <Windows.h>
 #include <stdlib.h>
@@ -12,6 +11,8 @@
 #define TEST_NEW
 
 #ifndef TEST_NEW
+
+#include "old\export.h"
 
 void on_preview_image(
 	const unsigned char *data,
@@ -112,9 +113,12 @@ int main()
 
 #else
 
+#include "../include/ray_base.h"
+
 int main() {
 	using namespace ray;
 	using namespace recorder;
+	using namespace remuxer;
 
 	ray_autoptr<IRecorder> recorder = createRecorder();
 
@@ -124,12 +128,13 @@ int main() {
 
 	uint32_t major, minor, patch, build;
 
-	recorder->getVersion(&major, &minor, &patch, &build);
+	getVersion(&major, &minor, &patch, &build);
 
-	ray_autoptr<IRemuxer> remuxer = nullptr;
+	printf("lib version %d.%d.%d.%d", major, minor, patch, build);
+
+	ray_autoptr<IRemuxer> remuxer = createRemuxer();
 	
-	if (remuxer.queryInterface<IRecorder, RECORDER_INTERFACE_IID>(recorder.get(), ray::RECORDER_IID_REMUXER))
-		remuxer->remux("..\\..\\save.mp4", "..\\..\\save.mkv");
+	remuxer->remux("..\\..\\save.mp4", "..\\..\\save.mkv");
 
 	getchar();
 }

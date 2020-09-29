@@ -221,7 +221,6 @@ typedef enum RECORDER_INTERFACE_IID {
 	RECORDER_IID_AUDIO_ENCODER_MGR,
 
 	RECORDER_IID_MUXER,
-	RECORDER_IID_REMUXER
 }RECORDER_INTERFACE_IID;
 
 namespace base {
@@ -416,44 +415,6 @@ public:
 };
 
 /**
-* Remuxer
-*/
-class IRemuxer {
-protected:
-	virtual ~IRemuxer() {};
-public:
-
-	/**
-	* Start to remux file to specified format
-	* @param srcFilePath source file path
-	* @param dstFilePath dst file path specified format by extension
-	* @return 0 for succeed, others for error code
-	*/
-	virtual rt_error remux(
-		const char srcFilePath[RECORDER_MAX_PATH_LEN],
-		const char dstFilePath[RECORDER_MAX_PATH_LEN]
-	) = 0;
-
-	/**
-	* Stop to remux specified file
-	* @param srcFilePath
-	*/
-
-	virtual void stop(const char srcFilePath[RECORDER_MAX_PATH_LEN]) = 0;
-
-	/**
-	* Stop all remuxing thread
-	*/
-	virtual void stopAll() = 0;
-
-	/**
-	* Release remuxer
-	* This will stop all remuxing tasks and release remuxer
-	*/
-	virtual void release() = 0;
-};
-
-/**
 * Recorder event handler
 */
 class IRecorderEventHandler {
@@ -497,7 +458,59 @@ public:
 	* @param volume
 	*/
 	virtual void onAudioVolume(const rt_uid uid, int volume) {}
+};
 
+/**
+* Define all interfaces of Recorder
+*/
+class IRecorder {
+protected:
+	virtual ~IRecorder() {};
+
+public:
+
+	/**
+	* Initialize recorder with configuration
+	* @param config    configuration
+	* @return          0 for success, other for error code
+	*/
+	virtual rt_error initialize(const RecorderConfiguration& config) = 0;
+
+	/**
+	* Release recorder
+	* This will stop all tasks include capturing, encoding, muxing and remuxing
+	*/
+	virtual void release() = 0;
+
+	/**
+	* Set recorder event handler
+	* @param handler
+	*/
+	virtual void setEventHandler(IRecorderEventHandler *handler) = 0;
+
+	/**
+	* Query interface by iid
+	* @param iid         Interface IID
+	* @param interface   A pointer pointed to interface's pointer,
+	*					 nullptr will be set when get error, otherwise none-nullptr value will be set
+	* @return            0 for success, other for error code
+	*/
+	virtual rt_error queryInterface(const RECORDER_INTERFACE_IID& iid, void **pp) = 0;
+};
+
+} // namespace recorder
+
+namespace remuxer {
+
+typedef struct RemuxerConfiguration {
+}RemuxerConfiguration;
+
+/**
+* Recorder event handler
+*/
+class IRemuxerEventHandler {
+public:
+	virtual ~IRemuxerEventHandler() {};
 	/**
 	* Remux progress callback function
 	* @param src source file path
@@ -516,55 +529,66 @@ public:
 };
 
 /**
-* Define all interfaces of Recorder
+* Remuxer
 */
-class IRecorder {
+class IRemuxer {
 protected:
-	virtual ~IRecorder() {};
-
+	virtual ~IRemuxer() {};
 public:
 
 	/**
-	* Initialize recorder with specified log file path
+	* Initialize remuxer with specified log file path
 	* @param logPath   Specified log file path in utf8
 	* @return          0 for success, other for error code
 	*/
-	virtual rt_error initialize(const RecorderConfiguration& config) = 0;
+	virtual rt_error initialize(const RemuxerConfiguration& config) = 0;
 
 	/**
-	* Release recorder
-	* This will stop all tasks include capturing, encoding, muxing and remuxing
+	* Release remuxer
+	* This will stop all remuxing tasks and release remuxer
 	*/
 	virtual void release() = 0;
 
 	/**
-	* Get recorder version
-	* @param major
-	* @param minor
-	* @param patch
-	* @param build
-	*/
-	virtual void getVersion(uint32_t *major, uint32_t *minor, uint32_t *patch, uint32_t *build) = 0;
-
-	/**
-	* Set recorder event handler
+	* Set remuxer event handler
 	* @param handler
 	*/
-	virtual void setEventHandler(IRecorderEventHandler *handler) = 0;
+	virtual void setEventHandler(IRemuxerEventHandler *handler) = 0;
 
 	/**
-	* Query interface by iid
-	* @param iid         Interface IID
-	* @param interface   A pointer pointed to interface's pointer,
-	*					 nullptr will be set when get error, otherwise none-nullptr value will be set
-	* @return            0 for success, other for error code
+	* Start to remux file to specified format
+	* @param srcFilePath source file path
+	* @param dstFilePath dst file path specified format by extension
+	* @return 0 for succeed, others for error code
 	*/
-	virtual rt_error queryInterface(const RECORDER_INTERFACE_IID& iid, void **pp) = 0;
+	virtual rt_error remux(const char* srcFilePath, const char* dstFilePath) = 0;
+
+	/**
+	* Stop to remux specified file
+	* @param srcFilePath
+	*/
+
+	virtual void stop(const char* srcFilePath) = 0;
+
+	/**
+	* Stop all remuxing thread
+	*/
+	virtual void stopAll() = 0;
 };
-} // namespace recorder
+
+} // namespace remuxer
+
+
 
 } // namespace ray
 
+
+RAY_API void RAY_CALL getVersion(uint32_t *major, uint32_t *minor, uint32_t *patch, uint32_t *build);
+
 RAY_API ray::recorder::IRecorder* RAY_CALL createRecorder();
+
+RAY_API ray::remuxer::IRemuxer* RAY_CALL createRemuxer();
+
+
 
 #endif

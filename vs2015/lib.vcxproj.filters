@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="defines">
-      <UniqueIdentifier>{6efa3ce5-a902-4756-866e-0b71d7a64e2d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="devices">
       <UniqueIdentifier>{abffc59a-129a-468d-b433-0278780530de}</UniqueIdentifier>
     </Filter>
@@ -36,9 +33,6 @@
     </Filter>
     <Filter Include="utils\win\injecter">
       <UniqueIdentifier>{101ec402-c9f3-44e6-a1a2-6a4cc32b4a5e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="remuxer">
-      <UniqueIdentifier>{81bf06b2-e1ed-4682-84b1-df14746edd22}</UniqueIdentifier>
     </Filter>
     <Filter Include="capture">
       <UniqueIdentifier>{06d19726-b0cf-49cb-9562-ecb1d4525c50}</UniqueIdentifier>
@@ -195,7 +189,6 @@
     <ClInclude Include="..\include\ray_refptr.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\recorder.h" />
     <ClInclude Include="..\src\ffmpeg\ffmpeg_common.h">
       <Filter>ffmpeg</Filter>
     </ClInclude>
@@ -211,12 +204,11 @@
     <ClInclude Include="..\src\constants\ray_version.h">
       <Filter>constants</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\remuxer\ray_remuxer.h">
-      <Filter>remuxer</Filter>
-    </ClInclude>
+    <ClInclude Include="..\src\ray_recorder.h" />
+    <ClInclude Include="..\src\ray_remuxer.h" />
+    <ClInclude Include="..\src\ray_dump.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\dllmain.cpp" />
     <ClCompile Include="..\src\utils\log.cpp">
       <Filter>utils</Filter>
     </ClCompile>
@@ -320,9 +312,9 @@
       <Filter>old</Filter>
     </ClCompile>
     <ClCompile Include="..\src\unit_test.cpp" />
-    <ClCompile Include="..\src\recorder.cpp" />
-    <ClCompile Include="..\src\remuxer\ray_remuxer.cpp">
-      <Filter>remuxer</Filter>
-    </ClCompile>
+    <ClCompile Include="..\src\ray_dllmain.cpp" />
+    <ClCompile Include="..\src\ray_recorder.cpp" />
+    <ClCompile Include="..\src\ray_remuxer.cpp" />
+    <ClCompile Include="..\src\ray_dump.cpp" />
   </ItemGroup>
 </Project>

@@ -1,17 +1,16 @@
-#define RAY_EXPORT
+#include "ray_dump.h"
 
 #include <Windows.h>
-
 #include <dbghelp.h>
 #include <stdio.h>
 #include <tchar.h>
 
-#include "recorder.h"
-
-RAY_API ray::recorder::IRecorder *createRecorder()
-{
-	return ray::recorder::Recorder::getInstance();
-}
+#if _MSC_VER >= 1300    // for VC 7.0
+// from ATL 7.0 sources
+#ifndef _delayimp_h
+extern "C" IMAGE_DOS_HEADER __ImageBase;
+#endif
+#endif
 
 static void dump_file(const TCHAR *path, EXCEPTION_POINTERS *exception)
 {
@@ -27,12 +26,7 @@ static void dump_file(const TCHAR *path, EXCEPTION_POINTERS *exception)
 	CloseHandle(file);
 }
 
-#if _MSC_VER >= 1300    // for VC 7.0
-// from ATL 7.0 sources
-#ifndef _delayimp_h
-extern "C" IMAGE_DOS_HEADER __ImageBase;
-#endif
-#endif
+
 
 static HMODULE get_current_module()
 {
@@ -64,31 +58,17 @@ static long exception_handler(EXCEPTION_POINTERS *ep)
 	//c://users//appdata//local//temp//recorder.dmp
 	if (GetTempPath(MAX_PATH, temp_path)) {
 		swprintf_s(dmp_path, MAX_PATH, L"%srecorder.dmp", temp_path);
-		
+
 		wprintf(L"%s\r\n", dmp_path);
 	}
-	
+
 
 	dump_file(dmp_path, ep);
 
 	return EXCEPTION_EXECUTE_HANDLER;
 }
 
-bool APIENTRY DllMain(HMODULE hModule,
-	DWORD  ul_reason_for_call,
-	LPVOID lpReserved
-)
+void registerExceptionHandler()
 {
-	switch (ul_reason_for_call)
-	{
-	case DLL_PROCESS_ATTACH:
-		SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)exception_handler);
-		break;
-	case DLL_THREAD_ATTACH:
-		break;
-	case DLL_THREAD_DETACH:
-	case DLL_PROCESS_DETACH:
-		break;
-	}
-	return TRUE;
+	SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)exception_handler);
 }
