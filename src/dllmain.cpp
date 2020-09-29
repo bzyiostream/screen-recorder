@@ -1,9 +1,17 @@
+#define RAY_EXPORT
+
 #include <Windows.h>
 
 #include <dbghelp.h>
 #include <stdio.h>
 #include <tchar.h>
 
+#include "recorder.h"
+
+RAY_API ray::recorder::IRecorder *createRecorder()
+{
+	return ray::recorder::Recorder::getInstance();
+}
 
 static void dump_file(const TCHAR *path, EXCEPTION_POINTERS *exception)
 {

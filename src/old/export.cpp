@@ -18,7 +18,7 @@
 #include "utils\log.h"
 
 #ifdef _WIN32
-#include "old\system_version.h"
+#include "system_version.h"
 #endif
 
 #include <string>

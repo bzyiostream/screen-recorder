@@ -1,6 +1,6 @@
 #include "encoder_video_nvenc.h"
 
-#include "constants\macros.h"
+#include "macros.h"
 #include "utils\log.h"
 
 namespace am {

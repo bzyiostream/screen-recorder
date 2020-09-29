@@ -6,8 +6,9 @@
 #include <functional>
 #include <thread>
 
-#include "include\export.h"
-#include "base\singleton.h"
+#include "include\ray_base.h"
+
+#include "base\ray_singleton.h"
 
 namespace ray {
 namespace remux {

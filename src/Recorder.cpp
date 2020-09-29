@@ -1,8 +1,8 @@
 #include "recorder.h"
 
-#include "constants\version.h"
+#include "constants\ray_version.h"
 
-#include "remuxer\remuxer.h"
+#include "remuxer\ray_remuxer.h"
 
 #include "utils\strings.h"
 #include "utils\log.h"
@@ -21,7 +21,7 @@ rt_error Recorder::initialize(const RecorderConfiguration& config) {
 		std::bind(&Recorder::onRemuxState, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)
 	);
 
-	return ERR_NONE;
+	return ERR_NO;
 }
 
 void Recorder::release() {
@@ -44,11 +44,11 @@ void Recorder::setEventHandler(IRecorderEventHandler *handler) {
 }
 
 rt_error Recorder::queryInterface(const RECORDER_INTERFACE_IID& iid, void **pp) {
-	rt_error ret = ERR_NONE;
+	rt_error ret = ERR_NO;
 
 	do {
 		if (!pp) {
-			ret = ERR_INVALID_POINTER;
+			ret = ERROR_INVALID_PARAMETER;
 			break;
 		}
 
@@ -82,11 +82,4 @@ void Recorder::onRemuxState(const char * srcFilePath, bool succeed, rt_error err
 }
 
 }
-}
-
-
-
-RAY_API ray::recorder::IRecorder *createRecorder()
-{
-	return ray::recorder::Recorder::getInstance();
 }

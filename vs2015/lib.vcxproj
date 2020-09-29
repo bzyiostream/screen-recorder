@@ -181,9 +181,10 @@ copy /Y $(TargetDir)$(TargetName).lib $(SolutionDir)..\2node\platform\win32\
     <ClInclude Include="..\include\ray_base.h" />
     <ClInclude Include="..\include\ray_refptr.h" />
     <ClInclude Include="..\src\base\refptr_object.h" />
-    <ClInclude Include="..\src\base\singleton.h" />
-    <ClInclude Include="..\src\constants\macros.h" />
-    <ClInclude Include="..\src\constants\version.h" />
+    <ClInclude Include="..\src\base\ray_singleton.h" />
+    <ClInclude Include="..\src\constants\ray_macros.h" />
+    <ClInclude Include="..\src\constants\ray_version.h" />
+    <ClInclude Include="..\src\ffmpeg\ffmpeg_common.h" />
     <ClInclude Include="..\src\old\common.h" />
     <ClInclude Include="..\src\old\d3d_helper.h" />
     <ClInclude Include="..\src\old\device_audios.h" />
@@ -202,6 +203,7 @@ copy /Y $(TargetDir)$(TargetName).lib $(SolutionDir)..\2node\platform\win32\
     <ClInclude Include="..\src\old\hardware_acceleration.h" />
     <ClInclude Include="..\src\old\headers_ffmpeg.h" />
     <ClInclude Include="..\src\old\headers_mmdevice.h" />
+    <ClInclude Include="..\src\old\macros.h" />
     <ClInclude Include="..\src\old\mul_db.h" />
     <ClInclude Include="..\src\old\muxer_define.h" />
     <ClInclude Include="..\src\old\muxer_ffmpeg.h" />
@@ -226,7 +228,7 @@ copy /Y $(TargetDir)$(TargetName).lib $(SolutionDir)..\2node\platform\win32\
     <ClInclude Include="..\src\old\system_time.h" />
     <ClInclude Include="..\src\old\system_version.h" />
     <ClInclude Include="..\src\recorder.h" />
-    <ClInclude Include="..\src\remuxer\remuxer.h" />
+    <ClInclude Include="..\src\remuxer\ray_remuxer.h" />
     <ClInclude Include="..\src\utils\log.h" />
     <ClInclude Include="..\src\utils\strings.h" />
   </ItemGroup>
@@ -266,7 +268,7 @@ copy /Y $(TargetDir)$(TargetName).lib $(SolutionDir)..\2node\platform\win32\
     <ClCompile Include="..\src\old\system_lib.cpp" />
     <ClCompile Include="..\src\old\system_time.cpp" />
     <ClCompile Include="..\src\old\system_version.cpp" />
-    <ClCompile Include="..\src\remuxer\remuxer.cpp" />
+    <ClCompile Include="..\src\remuxer\ray_remuxer.cpp" />
     <ClCompile Include="..\src\utils\log.cpp" />
     <ClCompile Include="..\src\utils\strings.cpp" />
   </ItemGroup>

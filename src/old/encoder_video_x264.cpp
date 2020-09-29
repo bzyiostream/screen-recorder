@@ -1,7 +1,7 @@
 #include "encoder_video_x264.h"
 
 #include "error_define.h"
-#include "constants\macros.h"
+#include "macros.h"
 #include "utils\log.h"
 
 namespace am {

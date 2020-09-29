@@ -49,19 +49,16 @@
     <Filter Include="include">
       <UniqueIdentifier>{ef859209-a12e-4508-9e27-768bae6d5e62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ffmpeg">
+      <UniqueIdentifier>{b2e4a928-92e2-42bd-80ac-b3ce7938c0a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\constants\version.h">
-      <Filter>constants</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\utils\log.h">
       <Filter>utils</Filter>
     </ClInclude>
     <ClInclude Include="..\src\utils\strings.h">
       <Filter>utils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\constants\macros.h">
-      <Filter>constants</Filter>
     </ClInclude>
     <ClInclude Include="..\src\old\common.h">
       <Filter>old</Filter>
@@ -183,13 +180,7 @@
     <ClInclude Include="..\src\old\system_version.h">
       <Filter>old</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\remuxer\remuxer.h">
-      <Filter>remuxer</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\base\refptr_object.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\base\singleton.h">
       <Filter>base</Filter>
     </ClInclude>
     <ClInclude Include="..\src\old\export.h">
@@ -205,6 +196,24 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="..\src\recorder.h" />
+    <ClInclude Include="..\src\ffmpeg\ffmpeg_common.h">
+      <Filter>ffmpeg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\ray_singleton.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\old\macros.h">
+      <Filter>old</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\constants\ray_macros.h">
+      <Filter>constants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\constants\ray_version.h">
+      <Filter>constants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\remuxer\ray_remuxer.h">
+      <Filter>remuxer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\dllmain.cpp" />
@@ -307,13 +316,13 @@
     <ClCompile Include="..\src\old\system_version.cpp">
       <Filter>old</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\remuxer\remuxer.cpp">
-      <Filter>remuxer</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\old\export.cpp">
       <Filter>old</Filter>
     </ClCompile>
     <ClCompile Include="..\src\unit_test.cpp" />
     <ClCompile Include="..\src\recorder.cpp" />
+    <ClCompile Include="..\src\remuxer\ray_remuxer.cpp">
+      <Filter>remuxer</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
