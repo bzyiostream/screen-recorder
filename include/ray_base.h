@@ -35,9 +35,6 @@
 #define DEVICE_MAX_NAME_LEN 260
 #define DEVICE_MAX_ID_LEN 260
 
-#define ENCODER_MAX_NAME_LEN 260
-#define ENCODER_MAX_ID_LEN 260
-
 #define RECORDER_MAX_PATH_LEN 260
 
 namespace ray {
@@ -223,7 +220,17 @@ typedef enum RECORDER_INTERFACE_IID {
 	RECORDER_IID_MUXER,
 }RECORDER_INTERFACE_IID;
 
-namespace base {
+class RayRefInterface {
+protected:
+	virtual ~RayRefInterface() = default;
+
+public:
+	virtual void AddRef() const = 0;
+
+	virtual void Release() const = 0;
+
+	virtual bool HasOneRef() const = 0;
+};
 
 class CRect {
 public:
@@ -239,20 +246,6 @@ public:
 	uint32_t bottom;
 };
 
-
-class RayRefInterface {
-protected:
-	virtual ~RayRefInterface() = default;
-
-public:
-	virtual void AddRef() const = 0;
-
-	virtual void Release() const = 0;
-
-	virtual bool HasOneRef() const = 0;
-};
-
-} // namespace base
 
 namespace recorder {
 
@@ -313,7 +306,7 @@ public:
 
 	virtual uint32_t getDataSize() const = 0;
 
-	virtual const base::CRect& getSize() const = 0;
+	virtual const CRect& getSize() const = 0;
 };
 
 class IVideoCapturer {
@@ -502,11 +495,15 @@ public:
 
 namespace remuxer {
 
+/**
+* Remuxer configuration
+*/
 typedef struct RemuxerConfiguration {
+	int nthread = 4;
 }RemuxerConfiguration;
 
 /**
-* Recorder event handler
+* Remuxer event handler
 */
 class IRemuxerEventHandler {
 public:
@@ -577,8 +574,6 @@ public:
 };
 
 } // namespace remuxer
-
-
 
 } // namespace ray
 

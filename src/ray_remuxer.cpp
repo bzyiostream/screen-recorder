@@ -213,6 +213,8 @@ void RemuxerTask::task()
 	if (event_handler_)
 		event_handler_->onRemuxState(src_.c_str(), 0, error);
 
+	running_ = false;
+
 	//Remuxer::getInstance()->stop(src_.c_str());
 }
 
