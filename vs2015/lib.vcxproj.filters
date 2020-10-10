@@ -207,6 +207,30 @@
     <ClInclude Include="..\src\ray_recorder.h" />
     <ClInclude Include="..\src\ray_remuxer.h" />
     <ClInclude Include="..\src\ray_dump.h" />
+    <ClInclude Include="..\include\ray_audio_capture.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ray_audio_device.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ray_audio_encoder.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ray_muxer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ray_streamer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ray_video_capture.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ray_video_device.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ray_video_encoder.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\utils\log.cpp">
