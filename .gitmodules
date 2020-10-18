@@ -1,0 +1,3 @@
+[submodule "duilib"]
+	path = duilib
+	url = git@github.com:peilinok/NIM_Duilib_Framework.git
