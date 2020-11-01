@@ -6,75 +6,75 @@
 #include <iostream>
 
 namespace ray {
-	namespace utils {
+namespace utils {
 
-		typedef int LOG_LEVEL;
-		const LOG_LEVEL LOG_VERBOSE = -1;
-		const LOG_LEVEL LOG_INFO = 0;
-		const LOG_LEVEL LOG_WARNING = 1;
-		const LOG_LEVEL LOG_ERROR = 2;
-		const LOG_LEVEL LOG_FATAL = 3;
-		const LOG_LEVEL LOG_NUM_SEVERITIES = 4;
+typedef int LOG_LEVEL;
+const LOG_LEVEL LOG_VERBOSE = -1;
+const LOG_LEVEL LOG_INFO = 0;
+const LOG_LEVEL LOG_WARNING = 1;
+const LOG_LEVEL LOG_ERROR = 2;
+const LOG_LEVEL LOG_FATAL = 3;
+const LOG_LEVEL LOG_NUM_SEVERITIES = 4;
 
-		// This class is used to explicitly ignore values in the conditional
-		// log macros.  This avoids compiler warnings like "value computed
-		// is not used" and "statement has no effect".
-		class LogOnceVoidify {
-		public:
-			LogOnceVoidify() { }
-			// This has to be an operator with a precedence lower than << but
-			// higher than ?:
-			void operator&(std::ostream&) { }
-		};
+// This class is used to explicitly ignore values in the conditional
+// log macros.  This avoids compiler warnings like "value computed
+// is not used" and "statement has no effect".
+class LogOnceVoidify {
+public:
+	LogOnceVoidify() { }
+	// This has to be an operator with a precedence lower than << but
+	// higher than ?:
+	void operator&(std::ostream&) { }
+};
 
-		class LogOnce {
-		public:
-			LogOnce(LOG_LEVEL level);
+class LogOnce {
+public:
+	LogOnce(LOG_LEVEL level);
 
-			LogOnce(const char* file, int line, LOG_LEVEL level);
+	LogOnce(const char* file, int line, LOG_LEVEL level);
 
-			~LogOnce();
+	~LogOnce();
 
-			std::ostream& stream() { return stream_; }
+	std::ostream& stream() { return stream_; }
 
-		private:
-			void Init(const char* file, int line);
+private:
+	void Init(const char* file, int line);
 
-			LOG_LEVEL level_;
-			std::ostringstream stream_;
-		};
+	LOG_LEVEL level_;
+	std::ostringstream stream_;
+};
 
-		/**
-		* Sets the log file name and other global logging state.
-		* Calling this function is recommended, and is normally
-		* done at the beginning of application init.
-		* @param log_file log file path
-		* @param min_level minimum log level
-		* @return true for succeed,otherwise failed
-		*/
-		bool InitLogImpl(const wchar_t* log_file, LOG_LEVEL min_level = LOG_INFO);
+/**
+* Sets the log file name and other global logging state.
+* Calling this function is recommended, and is normally
+* done at the beginning of application init.
+* @param log_file log file path
+* @param min_level minimum log level
+* @return true for succeed,otherwise failed
+*/
+bool InitLogImpl(const wchar_t* log_file, LOG_LEVEL min_level = LOG_INFO);
 
-		/**
-		* Close log file
-		*/
-		void ReleaseLogImpl();
+/**
+* Close log file
+*/
+void ReleaseLogImpl();
 
-		/**
-		* Set minimum log level
-		*/
-		void SetMinLogLevel(int level);
+/**
+* Set minimum log level
+*/
+void SetMinLogLevel(int level);
 
-		/**
-		* Get minimum log level
-		*/
-		int GetMinLogLevel();
+/**
+* Get minimum log level
+*/
+int GetMinLogLevel();
 
-		/**
-		* Get full log file path
-		*/
-		std::wstring GetLogFileFullPath();
+/**
+* Get full log file path
+*/
+std::wstring GetLogFileFullPath();
 
-	}
+}
 }
 
 #ifdef _DEBUG

@@ -4,7 +4,7 @@
 
 namespace ray {
 namespace recorder {
- 
+
 class Recorder :
 	public IRecorder,
 	public base::Singleton<Recorder>

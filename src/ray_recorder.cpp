@@ -36,8 +36,8 @@ rt_error Recorder::queryInterface(const RECORDER_INTERFACE_IID& iid, void **pp) 
 
 		switch (iid)
 		{
-		//case RECORDER_IID_REMUXER:
-			//*pp = static_cast<void*>(remux::Remuxer::getInstance());
+			//case RECORDER_IID_REMUXER:
+				//*pp = static_cast<void*>(remux::Remuxer::getInstance());
 			break;
 		default:
 			ret = ERR_UNSUPPORT;
