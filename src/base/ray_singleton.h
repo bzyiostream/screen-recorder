@@ -13,16 +13,11 @@ class Singleton
 public:
 	static T* getInstance() {
 		static std::mutex mutex_;
-
 		if (instance_.get() == nullptr) {
-
 			std::lock_guard<std::mutex> lock(mutex_);
-
 			if (instance_.get() == nullptr)
 				instance_.reset(new T());
-
 		}
-
 		return instance_.get();
 	}
 

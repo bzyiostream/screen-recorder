@@ -188,7 +188,7 @@ copy /Y $(TargetDir)$(TargetName).lib $(SolutionDir)..\2node\platform\win32\
     <ClInclude Include="..\include\ray_video_capture.h" />
     <ClInclude Include="..\include\ray_video_device.h" />
     <ClInclude Include="..\include\ray_video_encoder.h" />
-    <ClInclude Include="..\src\base\refptr_object.h" />
+    <ClInclude Include="..\src\base\ray_refptr_object.h" />
     <ClInclude Include="..\src\base\ray_singleton.h" />
     <ClInclude Include="..\src\constants\ray_macros.h" />
     <ClInclude Include="..\src\constants\ray_version.h" />
@@ -240,6 +240,7 @@ copy /Y $(TargetDir)$(TargetName).lib $(SolutionDir)..\2node\platform\win32\
     <ClInclude Include="..\src\ray_remuxer.h" />
     <ClInclude Include="..\src\utils\log.h" />
     <ClInclude Include="..\src\utils\strings.h" />
+    <ClInclude Include="ray_threadpool.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\ray_dllmain.cpp" />
