@@ -10,6 +10,8 @@
 #include <future>
 #include <stdexcept>
 
+#include "ray_threadpool.h"
+
 #define  THREADPOOL_MAX_NUM 16
 //#define  THREADPOOL_AUTO_GROW
 
@@ -92,6 +94,7 @@ public:
 #ifndef THREADPOOL_AUTO_GROW
 private:
 #endif // !THREADPOOL_AUTO_GROW
+
 	void addThread(unsigned short size)
 	{
 		for (; pool_.size() < THREADPOOL_MAX_NUM && size > 0; --size)

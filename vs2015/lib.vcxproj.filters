@@ -228,10 +228,10 @@
     <ClInclude Include="..\include\ray_video_encoder.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="ray_threadpool.h">
+    <ClInclude Include="..\src\base\ray_refptr_object.h">
       <Filter>base</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\base\ray_refptr_object.h">
+    <ClInclude Include="..\src\base\ray_threadpool.h">
       <Filter>base</Filter>
     </ClInclude>
   </ItemGroup>
